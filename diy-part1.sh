@@ -17,4 +17,4 @@
 echo 'src-git helloworld https://github.com/fw876/helloworld' >>feeds.conf.default
 #echo 'src-git passwall https://github.com/xiaorouji/openwrt-passwall' >>feeds.conf.default
 # 自动引入含有 fileassistant 的第三方软件包源
-sed -i '1i src-git lienol https://github.com' feeds.conf.default
+echo 'src-git lienol https://github.com' >> feeds.conf.default
