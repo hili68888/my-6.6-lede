@@ -61,10 +61,8 @@ echo "CONFIG_PACKAGE_curl=y" >> .config
 echo "CONFIG_PACKAGE_ca-bundle=y" >> .config              # 补齐全局根证书
 echo "CONFIG_PACKAGE_ipset=y" >> .config
 echo "CONFIG_PACKAGE_ip-full=y" >> .config
-echo "CONFIG_PACKAGE_coreutils-nohup=y" >> .config        # OpenClash 守护进程必备
 echo "CONFIG_PACKAGE_kmod-tun=y" >> .config               # TUN 模式虚拟网卡驱动
 echo "CONFIG_PACKAGE_libcap=y" >> .config
-echo "CONFIG_PACKAGE_libcap-bin=y" >> .config
 echo "CONFIG_PACKAGE_unzip=y" >> .config                  # 核心内核解压必备
 
 # 2. 现代防火墙流量转发规则（适配当前 Linux 内核）
@@ -73,10 +71,6 @@ echo "CONFIG_PACKAGE_iptables-mod-extra=y" >> .config
 echo "CONFIG_PACKAGE_kmod-ipt-tproxy=y" >> .config
 echo "CONFIG_PACKAGE_kmod-nft-tproxy=y" >> .config       # 现代 nftables 劫持（新版 PassWall2/OpenClash 核心依赖）
 echo "CONFIG_PACKAGE_kmod-nft-socket=y" >> .config       # Socket 匹配组件
-
-# 3. 高级脚本解析器与语言支持（OpenClash 覆写规则与配置文件硬依赖）
-echo "CONFIG_PACKAGE_ruby=y" >> .config                   # 规则覆写核心引擎
-echo "CONFIG_PACKAGE_ruby-yaml=y" >> .config              # YAML 配置文件解析
 
 # 4. 全功能高级 DNS 分流环境（规避精简版导致的运行崩溃）
 # 彻底在默认模板中剔除精简版 dnsmasq，换成 full 完整版
