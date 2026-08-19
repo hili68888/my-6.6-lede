@@ -45,6 +45,7 @@ echo "CONFIG_PACKAGE_kmod-leds-gpio=y" >> .config           # 确保高通硬路
 # 6. 【高级运维与精美主题】
 echo "CONFIG_PACKAGE_luci-app-ttyd=y" >> .config           # 网页版终端（刷好后无需 PuTTY，直接在浏览器里敲 SSH 命令）
 echo "CONFIG_PACKAGE_luci-app-fileassistant=y" >> .config          # 图形化文件助手 fileassistant
+echo "CONFIG_PACKAGE_luci-i18n-fileassistant-zh-cn=y" >> .config
 
 # 彻底移除高通无线驱动及所有无线管理组件（打造纯有线固件）
 echo "CONFIG_PACKAGE_kmod-ath11k=n" >> .config
