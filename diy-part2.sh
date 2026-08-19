@@ -28,7 +28,7 @@ find ./target/linux/ -name "Makefile" | xargs sed -i 's/KERNEL_PATCHVER:=6.1/KER
 # 2. 精准锁定高通 IPQ60xx 平台和你的 CMIOT AX18 专属机型
 echo "CONFIG_TARGET_ipq60xx=y" >> .config
 echo "CONFIG_TARGET_ipq60xx_Generic=y" >> .config
-echo "CONFIG_TARGET_ipq60xx_Generic_DEVICE_cmiot_ax18=y" >> .config
+echo "CONFIG_TARGET_ipq60xx_generic_DEVICE_cmiot_ax18=y" >> .config
 
 # 3. 自动注入中文 LuCI 网页后台系统
 echo "CONFIG_PACKAGE_luci=y" >> .config
@@ -78,8 +78,9 @@ echo "CONFIG_PACKAGE_ruby=y" >> .config                   # 规则覆写核心�
 echo "CONFIG_PACKAGE_ruby-yaml=y" >> .config              # YAML 配置文件解析
 
 # 4. 全功能高级 DNS 分流环境（规避精简版导致的运行崩溃）
-echo "CONFIG_PACKAGE_dnsmasq=n" >> .config                # 剔除自带精简版
-echo "CONFIG_PACKAGE_dnsmasq-full=y" >> .config           # 替换为全功能防污染完整版
+# 彻底在默认模板中剔除精简版 dnsmasq，换成 full 完整版
+sed -i 's/CONFIG_PACKAGE_dnsmasq=y/# CONFIG_PACKAGE_dnsmasq is not set/g' .config
+echo "CONFIG_PACKAGE_dnsmasq-full=y" >> .config
 echo "CONFIG_PACKAGE_unbound=y" >> .config                # 高级网络本地缓存与分流
 
 
