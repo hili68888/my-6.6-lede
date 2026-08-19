@@ -38,6 +38,9 @@ echo "CONFIG_LUCI_LANG_zh_Hans=y" >> .config
 echo "CONFIG_PACKAGE_luci-app-upnp=y" >> .config           # 通用即插即用（玩游戏、P2P 下载必备，自动映射端口）
 echo "CONFIG_PACKAGE_luci-app-ddns=y" >> .config           # 动态域名解析（配合外网访问路由器）
 
+# 5. LED 灯光高级控制
+echo "CONFIG_PACKAGE_luci-app-ledtrig-system=y" >> .config   # 基础 LED 触发器控制面板（核心地基）
+echo "CONFIG_PACKAGE_kmod-leds-gpio=y" >> .config           # 确保高通硬路由的 GPIO 灯光底层驱动被编译
 
 # 6. 【高级运维与精美主题】
 echo "CONFIG_PACKAGE_luci-app-ttyd=y" >> .config           # 网页版终端（刷好后无需 PuTTY，直接在浏览器里敲 SSH 命令）
