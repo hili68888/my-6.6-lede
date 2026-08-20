@@ -7,9 +7,10 @@
 # TTYD 免登录
 sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
-# 1. 【通用强改 6.6】不管当前默认是 6.12 还是其他任何版本，一律强制清洗并锁死为 6.6
+# 1. 【优雅切换 6.6】利用大雕和 LibWrt 源码原生的 KERNEL_TESTING 机制完美切换至 6.6
+# 这样系统在打补丁时会使用最安全的官方原生方案，不会因为强行覆盖导致 drivers/remoteproc 报错
 if [ -f "target/linux/qualcommax/Makefile" ]; then
-    sed -i 's/KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/g' target/linux/qualcommax/Makefile
+    sed -i 's/KERNEL_PATCHVER:=6.12/KERNEL_PATCHVER:=$(KERNEL_TESTING_PATCHVER)/g' target/linux/qualcommax/Makefile
 fi
 
 # 1.5 【核心报错修复】既然编译纯有线固件，直接强行删除引发冲突的高通无线内核补丁
